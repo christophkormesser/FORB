@@ -16,7 +16,7 @@ while True:
         status = r.status_code
 
         if status == 200:
-            webbrowser.open_new("http://localhost:1880")
+            webbrowser.open("http://localhost:1880", new=1, autoraise=False)
 
     except requests.ConnectionError:
         continue
@@ -25,7 +25,10 @@ while True:
 
 sleep(10)
 
-webbrowser.open_new('file://' + os.path.realpath(FIIIILLEEEE))
+os.system("chromium-browser file:///home/pi/Desktop/Bot/venv/bin/cutie.html")
+time.sleep(5)
+os.system("xdotool key F11")
+
 
 os.system("omxplayer /home/pi/Downloads/beep.wav")
 
