@@ -25,6 +25,8 @@ while True:
 
 sleep(10)
 
+webbrowser.open_new('file://' + os.path.realpath(FIIIILLEEEE))
+
 os.system("omxplayer /home/pi/Downloads/beep.wav")
 
 while True:
