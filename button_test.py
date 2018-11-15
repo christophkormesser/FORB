@@ -1,9 +1,12 @@
-import RPi.GPIO as gpio
+import RPi.GPIO as GPIO
+import time
 
-gpio.setwarnings(False)
-gpio.setmode(gpio.BOARD)
-gpio.setup(10, gpio.IN, pull_up_down=gpio.PUD_DOWN)
+GPIO.setmode(GPIO.BCM)
+
+GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 while True:
-    if gpio.input(10) == gpio.HIGH:
-        print("Button pressed!")
+    input_state = GPIO.input(10)
+    if input_state == False:
+        print('Button Pressed')
+        time.sleep(0.3)
