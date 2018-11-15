@@ -3,12 +3,19 @@
 
 import requests, time, os
 from pathlib import Path
+import RPi.GPIO as GPIO
 from time import sleep
 import webbrowser
 
 
 import cv2
 import numpy as np
+
+GPIO.setmode(GPIO.BCM)
+
+GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
 
 while True:
     try:
@@ -34,24 +41,14 @@ os.system("omxplayer /home/pi/Downloads/beep.wav")
 
 while True:
 
+    if (GPIO.input(10) == False):
+        print ("Pin 10 is true")
 
-    UI = input("f/o: ")
-
-    if UI == "f":
         cap = cv2.VideoCapture(0)
-
-        # Capture frame-by-frame
         ret, frame = cap.read()
-
-        # do what you want with frame
-        #  and then save to file
         cv2.imwrite('/home/pi/Desktop/Bot/venv/Picture/image.png', frame)
-
-        # When everything done, release the capture
         cap.release()
         cv2.destroyAllWindows()
-
-    ########################################################################################################
 
         imagePath = Path("/home/pi/Desktop/Bot/venv/Picture/image.png")
 
@@ -63,27 +60,15 @@ while True:
         #sending a request to node red
         r = requests.post(url, files=file)
         print(r.text)
-
-##############################################################################################################
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-##############################################################################################################
-
-    else:
+        
+    elif(GPIO.input(21) == False):
+        print ("Pin 21 is true")
 
         cap = cv2.VideoCapture(0)
-
-        # Capture frame-by-frame
         ret, frame = cap.read()
-
-        # do what you want with frame
-        #  and then save to file
         cv2.imwrite('/home/pi/Desktop/Bot/venv/Picture/image.png', frame)
-
-        # When everything done, release the capture
         cap.release()
         cv2.destroyAllWindows()
-
-    ########################################################################################################
 
         imagePath = Path("/home/pi/Desktop/Bot/venv/Picture/image.png")
 
