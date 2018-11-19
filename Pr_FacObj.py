@@ -23,7 +23,7 @@ while True:
         status = r.status_code
 
         if status == 200:
-            webbrowser.open("http://localhost:1880", new=1, autoraise=False)
+            print("-"*30 + "\nAll Functions Ready!")
 
     except requests.ConnectionError:
         continue
