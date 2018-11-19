@@ -30,8 +30,6 @@ while True:
 
     break
 
-sleep(10)
-
 os.system("chromium-browser file:///home/pi/Desktop/Bot/venv/bin/cutie.html")
 time.sleep(5)
 os.system("xdotool key F11")
