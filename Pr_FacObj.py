@@ -35,7 +35,7 @@ time.sleep(5)
 os.system("xdotool key F11")
 
 
-os.system("omxplayer /home/pi/Downloads/beep.wav")
+os.system("omxplayer -o local /home/pi/Downloads/beep.wav")
 
 while True:
 
