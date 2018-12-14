@@ -13,7 +13,7 @@ import numpy as np
 
 GPIO.setmode(GPIO.BCM)
 
-GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(13, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
@@ -23,24 +23,21 @@ while True:
         status = r.status_code
 
         if status == 200:
-            print("-"*30 + "\nAll Functions Ready!")
+            print("-"*30 + "\nAll Functions Ready!\n" + "-"*30)
 
     except requests.ConnectionError:
         continue
 
     break
 
-os.system("chromium-browser file:///home/pi/Desktop/Bot/venv/bin/cutie.html")
-time.sleep(5)
-os.system("xdotool key F11")
-
-
 os.system("omxplayer -o local /home/pi/Downloads/beep.wav")
+
+
 
 while True:
 
-    if (GPIO.input(10) == False):
-        print ("Pin 10 is true")
+    if (GPIO.input(13) == False):
+        print ("Pin 13 is true")
 
         cap = cv2.VideoCapture(0)
         ret, frame = cap.read()
