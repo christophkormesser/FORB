@@ -36,6 +36,29 @@ def fileupload():
     #Delete local file on successfull upload
     deleteLocal = 1
 
+        #Prints indented output
+    def print_output(msg, level):
+        print((" " * level * 2) + msg)
+
+
+    #Gets a list of files in a dropbox directory
+    def list_files(path):
+        p = Popen([uploader, "list", path], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+        output = p.communicate()[0].decode("utf-8")
+
+        fileList = list()
+        lines = output.splitlines()
+
+        for line in lines:
+            if line.startswith(" [F]"):
+                line = line[5:]
+                line = line[line.index(' ')+1:]
+                fileList.append(line)
+
+        return fileList
+
+
+    
     #Uploads a single file
     def upload_file(localPath, remotePath):
         p = Popen([uploader, "upload", localPath, remotePath], stdin=PIPE, stdout=PIPE, stderr=PIPE)
