@@ -1,3 +1,3 @@
-#FORB
+#FORB (Face & Object Recognition Bot)
 
-A Christmasproject by IBM Austrias Apprentices
+A New Years Project by IBM Austrias Apprentices
